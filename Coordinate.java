@@ -38,10 +38,46 @@ class Coordinate{
 	}
 
 
+	/**
+	Restituisce la distanza fra la Coordinata corrente ed un altra Cordinata, sfruttando il teorema di Pitagora
+	*/
+	public double getDistanza(Coordinate _coord){
+		// Verifico che l'oggetto passato non sia nullo
+		if(_coord==NULL)
+			throw new Exception();
+		
+		// Calcolo la distanza
+		return 	Math.sqrt((_coord.getLongitudine()-this.getLongitudine())*(_coord.getLongitudine()-this.getLongitudine())+
+				(_coord.getLatitudine()-this.getLatitudine())*(_coord.getLatitudine()-this.getLatitudine()));
+
+	}
+	/**
+	Restituisce la distanza fra la Coordinata corrente ed un punto specificato tramite la latitudine e la longitudine, sfruttando il teorema di Pitagora
+	*/
+	public double getDistanza(double _latitudine, double _longitudine){
+		// Calcolo la distanza
+		return 	Math.sqrt((_longitudine-this.getLongitudine())*(_longitudine*this.getLongitudine())+
+				(_latitudine-this.getLatitudine())*(_latitudine-this.getLatitudine()));
+	}
+
+	/**
+	Restituisce la distanza fra due coordinate, sfruttando il teorema di Pitagora
+	*/
+	public static double getDistanza(Coordinate _coord1, Coordinate _coord2){
+		// Verifico che gli oggetti passati non siano nulli
+		if(_coord1==NULL || _coord2==NULL)
+			throw new Exception();
+
+		// Calcolo la distanza
+		return 	Math.sqrt((_coord1.getLongitudine()-_coord2.getLongitudine())*(_coord1.getLongitudine()-_coord2.getLongitudine())+
+				(_coord1.getLatitudine()-_coord2.getLatitudine())*(_coord1.getLatitudine()-_coord2.getLatitudine()));
+
+	}
+
 
 	public void toString(){
 		StringBuilder sb=new StringBuilder();
-
+		
 		return sb.toString();
 	}
 
