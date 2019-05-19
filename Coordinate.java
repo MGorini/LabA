@@ -5,10 +5,16 @@ class Coordinate{
 
 	/**
 	Costruisce una nuova coordinata specificando i valori di longitudine e latitudine
+	in una sringa, divisi da una virgola
 	*/
-	public Coordinate(double _latitudine, double _longitudine){
-		setLatitudine(_latitudine);
-		setLatitudine(_longitudine);
+	public Coordinate(String _coord){
+		String[] tmp=_coord.split(",");
+		if(tmp!=2)
+			throw new Exception();
+
+		// Converto le Stirnghe in double e le passo come parametri 
+		setLatitudine(Double.doubleValue(tmp[0]));
+		setLongitudine(Double.doubleValue(tmp[1]));
 	}
 
 	/**

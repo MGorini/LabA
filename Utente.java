@@ -1,9 +1,8 @@
 import java.util.Date;
 import java.util.LinkedList;
 
-class Utente{
+class Utente {
 	// Attributi
-	String codiceutente;
 	LinkedList<Coordinate> c;
 	LinkedList<Boolean> inout;
 	LinkedList<Boolean> log;
@@ -12,48 +11,24 @@ class Utente{
 	/**
 	Crea un oggetto di tipo utente
 	*/
-	public Utente(Stirng _cod, Coordinate _coord, boolean _inout, boolean _log, Date _data){
-		setCodUtente(_cod);
-		addCoordinata(_coord);
-		addINOUT(_inout);
-		addLOG(_log);
-	}
-
-
-	/**
-	Consente di aggiungere le informazioni relative ad un evento
-	*/
-	public void AggiungiInfo(Coordinate _coord, boolean _inout, boolean _log, Date _data){
-		// Verifico che la Coordinata sia valida
-		// Verifico che la data non sia nulla
-		// Verifico che la data sia valida
-		// Se così non è esco dalla funzione ignorando i dati passati
-		if(_coord==NULL || _data==NULL ||)
-			return ;
-		
-		// Verificato che le informazioni sono valide procedo con l'inserimento
-		addCoordinata(_coord);
-		addINOUT(_inout);
-		addLOG(_log);
-		addData(_data);
-	}
-
-	/**
-	Permette di inserire il codice dell'utente
-	La funzione è privata poichè una volta inserito il codice, esso non deve essere più cambiato
-	*/
-	private void setCodUtente(Stirng _codutente){
-		// Verifico che il codice utente sia valido
-		if(_cod==NULL)
+	public Utente(Coordinate _coord, String _inout, String _log, Date _data){
+		// Ovviamente un nuovo utente non può aver eseguito il LOGOUT o la disiscrizione
+		// sennò non sarebbe un nuovo utente
+		// Verifico i campi, data compresa, e proseguo
+		if(_inout!="IN" || _log!="LOGIN")
 			throw new Exception();
-		codiceutente=_codutente;
-	}
 
-	/**
-	Restituisce il codice del utente (stringa alfanumerica)
-	*/
-	public String getCodiceUtente(){
-		return codutente;
+		// Istanzio le liste
+		date=new LinkedList<Date>();
+		inout=new LinkedList<Boolean>();
+		log=new LinkedList<Boolean>();
+		c=new LinkedList<Coordinate>();
+
+		// Assegno i primi valori
+		addCoordinata(_coord);
+		addData(_data);
+		inout.add(true);
+		log.add(true);
 	}
 
 	/**
@@ -66,7 +41,7 @@ class Utente{
 	/**
 	Consente di aggiungere l'Iscrizione o la Disiscrizione
 	*/
-	private void addINOUT(boolean b){
+	private void addINOUT(String b){
 		// trasformo la varibile booleana in un oggetto affinchè possa essere inserito
 		// all'interno della lista
 		inout.add(new Boolean(b));
@@ -75,7 +50,7 @@ class Utente{
 	/**
 	Consente di aggiungere un nuovo LOGIN o LOGOUT
 	*/
-	private void addLOG(boolean _log){
+	private void addLOG(Stirng _log){
 		// trasformo la varibile booleana in un oggetto affinchè possa essere inserito
 		// all'interno della lista
 		log.add(new Boolean(_log));
