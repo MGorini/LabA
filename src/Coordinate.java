@@ -45,6 +45,14 @@ class Coordinate{
 		return longitudine;
 	}
 
+	/**Restituisce la distanza fra due Coordinate*/
+	public double getDistanza(Coordinate _c){
+		//Restuisce la distanza adottando il teorema di Pitagora
+		double c1=_c.getLatitudine()-this.getLatitudine();
+		double c2=_c.getLongitudine()-this.getLongitudine();
+		return Math.sqrt(c1*c1+c2*c2);
+	}
+
 	/**Restituisce un formato stringa le coordinate
 	secondo i criteri prestabiliti:
 	latitudine,longitudine*/
