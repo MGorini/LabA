@@ -1,3 +1,6 @@
+import java.util.Date;
+import java.util.Calendar;
+
 class Dati{
 	// ATTRIBUTI
 	private boolean inout;
@@ -6,13 +9,14 @@ class Dati{
 	public Coordinate c;
 	public Umore u;
 
+	/**Crea un oggetto di tipo Dati*/
 	public Dati(String inout, String loginlogout, String data, Umore u, Coordinate c) throws DatiException{
 		this.c=c;
 		this.u=u;
 		setINOUT(inout);
 		setLOGINLOGOUT(loginlogout);
 		if(!getINOUT() && getLOGINLOGOUT())
-			throw new DatiException("Imposibile eseguire un LOGIN senza essere iscritti");
+			throw new DatiException("Impossibile eseguire un LOGIN senza essere iscritti");
 		setData(data);
 	}
 
@@ -62,6 +66,24 @@ class Dati{
 		return loginlogout;
 	}
 
+	/**Verifica che la data sia valida*/
+	public static boolean verificaData(int year, int mounth, int day){
+		// Creo il calendario
+		GregorianCalendar c=new GregorianCalendar(year, mounth-1, day);
+		// setto la data del calendario
+		cal.setLenient(false);
+		try{
+			// prova a crearla
+			// se non causa un errore allora la data è valida
+			cal.get(Calendar.DATE);
+			// restituisco quindi true
+			return true;
+		}catch(Exception e)
+		// altrimenti restituisco false
+		{ return false; }
+	}
+
+
 	/**
 	Setta la data dell'informazione
 	Solleva un eccezzione se il dato non è valido 
@@ -83,8 +105,8 @@ class Dati{
 	public String toString(){
 		StringBuilder sb=new StringBuilder();
 
-		sb.append(getINOUT()?"IN":"OUT");
-		//sb.append(" "+getLOGINLOGOUT()?"LOGIN":"LOGOUT");
+		sb.append(getINOUT()?"IN ":"OUT ");
+		sb.append(getLOGINLOGOUT()?"LOGIN":"LOGOUT");
 		sb.append(" "+getData());
 		sb.append(" "+u.toString());
 		sb.append(" "+c.toString());

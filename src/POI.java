@@ -3,7 +3,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 
 class POI{
-	Coordinate coord;
+	public Coordinate coord;
 	String nome;
 
 	/**Crea un oggetto di tipo POI richiedendo il nome e la sua locazione

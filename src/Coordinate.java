@@ -2,7 +2,7 @@ class Coordinate{
 	private double longitudine;
 	private double latitudine;
 
-	/**Crea un oggettto di tipo Coordinate tramite i valori
+	/**Crea un oggetto di tipo Coordinate tramite i valori
 	della latitudine e della longitudine*/
 	public Coordinate(double _latitudine ,double _longitudine){
 		setLatitudine(_latitudine);
