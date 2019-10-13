@@ -1,10 +1,14 @@
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.TreeMap;
+import java.util.LinkedList;
 
 class GestisciIO{
 	
-	public static TreeMap<String,Dati> import(String file, TreeMap<String,Dati> t){
+	public static TreeMap<String,LinkedList<Dati>> Import(String file, TreeMap<String,LinkedList<Dati>> t){
+		LinkedList<Dati> sup;
 		try{
 			// Creo il collegamento al file
 			BufferedReader br=new BufferedReader(new FileReader(file));
@@ -25,7 +29,8 @@ class GestisciIO{
 
 					// verifico se l'utente è gia presente
 					if(t.get(tmp[3])!=null){
-
+						// Se esiste già aggiungo i nuovi dati
+						t.get(tmp[3]).add(new Dati(tmp[0],tmp[1],tmp[2], Umore.valueOf(tmp[5]),new Coordinate(tmp[4])));
 					}
 					else
 					{
@@ -33,18 +38,28 @@ class GestisciIO{
 						// un nuovo utente non poù aver eseguito un LOGOUT
 						// se è nuovo
 						if(tmp[0]=="IN" && tmp[1]=="LOGIN")
-							t.put(tmp[3],new Dati(tmp[0],tmp[1],tmp[2],new Coordinate(tmp[4]),tmp[5]));
+						{
+							sup=new LinkedList<Dati>();
+							sup.add(new Dati(tmp[0],tmp[1],tmp[2],Umore.valueOf(tmp[5]),new Coordinate(tmp[4])));
+							t.put(tmp[3],sup);
+						}
 						// altrimenti segnalo un errore
 						else
 							throw new Exception("Dati di LOG non validi\nVerranno ignorati");
-
 					}
 
 				}catch(Exception e){}
 			}
 			return t;
 		}catch(Exception e){}
-		return null;
+		return t;}
+
+
+	public static void scriviSuFileDiLog(String msg){
+		try{
+			BufferedWriter bw=new BufferedWriter(new FileWriter("log.txt",true));
+			bw.write(msg);
+		}catch(Exception e){}
 	}
 
 }
