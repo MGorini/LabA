@@ -5,7 +5,7 @@ class Dati{
 	// ATTRIBUTI
 	private boolean inout;
 	private boolean loginlogout;
-	private String data;
+	private Date data;
 	public Coordinate c;
 	public Umore u;
 
@@ -83,13 +83,30 @@ class Dati{
 		{ return false; }
 	}
 
+	/**suddivide le info da stringa a data vera e propria: giorno/mese/anno */
+	public static Date predisponiData(String s) throws DatiException{
+		int d,m,y;
+		if(s.length()!=8)
+			throw new DatiException("Formato data non valida!");
+
+		//converto giorno, mese ed anno in interi
+		d = Integer.parseInt(s.substring(0,2));
+		m = Integer.parseInt(s.substring(2,4));
+		y = Integer.parseInt(s.substring(4,8));
+
+		if(!verificaData(y, m, d))
+			throw new DatiException("Data non valida");
+
+		//restituisco una data completa e validata
+		return new Date(y,m,d);
+	}
 
 	/**
 	Setta la data dell'informazione
-	Solleva un eccezzione se il dato non è valido 
+	Solleva un eccezzione se il dato non è valido
 	*/
 	public void setData(String data) throws DatiException{
-		this.data=data;
+		this.data=predisponiData(data);
 	}
 
 	/**
