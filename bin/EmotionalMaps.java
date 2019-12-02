@@ -8,7 +8,7 @@ import java.io.BufferedWriter;
 
 class EmotionalMaps{
 	LinkedList<POI> l_POI;
-	TreeMap<String, LinkedList<Dati>>;
+	TreeMap<String, LinkedList<Dati>> collezione;
 	final String FILE_LOG = "Log.txt";
 	final String IMPORT = "import";
 	final String CREATE_MAP = "create_map";
@@ -55,15 +55,52 @@ class EmotionalMaps{
 		}
 	}
 
+	/**Funzione che mi inserisce i valori dell'import (dati.txt) all'interno della treeMap*/
 	public static void importFF(String file){
-		// creo il collegamento col file
-		BufferedReader br = new BufferedReader(new FileReader(file));
+		try {
+			// creo il collegamento col file
+			BufferedReader br = new BufferedReader(new FileReader(file));
+
+			// creo delle variabili di supporto
+			String tmp;
+			String[] info;
+
+			// scorro le righe del file fino alla fine
+			while ((tmp=br.readLine()) != null){
+				try{
+					//Suddivido la stringa in sottostringhe che rappresentano i dati
+					info = tmp.split(" ");
+
+					// creo un oggetto di tipo dati
+					Dati d = new Dati(info[0], info[1], info[2], Umore.valueOf(info[5]), new Coordinate(info[4]));
+
+					//se la chiave della treeMap (info[3]) è già presente: aggiungo solo i dati
+					if(collezione.containsKey(info[3])){
+						collezione.get(info[3]).add(d);
+					}
+					//se la chiave della treeMap (info[3]) non è presente: creo la voce e aggiungo i dati
+					else{
+						collezione.put(info[3], new LinkedList<Dati>());
+						collezione.get(info[3]).add(d);
+					}
+				}
+				catch (Exception e){
+					//qualsiasi errore relativo ai dati errati viene riportato sul file di log
+					scriviSuLog(e);
+				}
+			}
+
+		}catch(Exception e) {
+			//Qualsiasi errore riguardante l'apertura o lo scorrimento del file lo ri riporta sul file di log
+			scriviSuLog(e);
+		}
 	}
 
 	public static String createMap(Date start, Date end) throws Exception{
 		if(start.compareTo(end) > 0)
 			throw new Exception("Intervallo temporale non corretto");
-
+		CreateActiveUsersMap(start, end);
+		CreateCompleteMap(start, end);
 	}
 
 	/**Stampa, sullo standard output, la "mappa emozionale richiesta"*/
@@ -71,7 +108,45 @@ class EmotionalMaps{
 		System.out.println(s);
 	}
 
+	private static String CreateCompleteMap(date start, date end){
+		//-----------------------HashMap<POI, array di double>
+		NavigableSet<String> ns = collezione.navigableKeySet();
+		LinkedList<Dati> tmp;
+		for(String k : ns){
+			tmp=collezione.get(k);
+ 			for(Dati d : tmp){
+ 				//verifico che la data sia compresa
+				if(d.getData().compareTo(start) >= 0 && d.getData().compareTo(end) <= 0) {
+
+				}
+			}
+		}
+	}
+
+	private static int getNearestPoi(Coordinate c){
+		int position = 1;
+		double distance_position, distance_next;
+		Coordinate cpoi_position, cpoi_next;
+
+		for(int i=2; i<l_POI.size();i++){
+			// assegno le coordinate dei POI
+			cpoi_position = l_POI.get(position).coord;
+			cpoi_next = l_POI.get(i).coord;
+
+			// calcolo le distanze
+			distance_position = cpoi_position.getDistanza(c);
+			distance_next = cpoi_next.getDistanza(c);
+
+			if(distance_position > distance_next)
+				position=i;
+		}
+		return position;
+	}
+
 	public static void main(String[] args){
+		//inzializzo la treeMap
+		collezione = new TreeMap<String, LinkedList<Dati>>();
+
 		// carico i POI in una lista
 		l_POI=POI.caricaPOI("POI.txt");
 		distinguiImportExport(args[0]);

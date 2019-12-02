@@ -10,7 +10,7 @@ class Dati{
 	public Umore u;
 
 	/**Crea un oggetto di tipo Dati*/
-	public Dati(String inout, String loginlogout, String data, Umore u, Coordinate c) throws DatiException{
+		public Dati(String inout, String loginlogout, String data, Umore u, Coordinate c) throws DatiException{
 		this.c=c;
 		this.u=u;
 		setINOUT(inout);
@@ -112,7 +112,7 @@ class Dati{
 	/**
 	Restituisce il valore della data
 	*/
-	public String getData(){
+	public Date getData(){
 		return data;
 	}
 
