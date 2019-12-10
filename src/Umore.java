@@ -1,6 +1,5 @@
 /*
-I tipi emumerativi posso tornare estremamente utili
-soprattutto in caso di aggiornameti futuri
+Oggeto che descrive le tipologie di Umore.
 */
 public enum Umore {
 	A ("ARRABBIATO"),
@@ -16,7 +15,7 @@ public enum Umore {
 		this.umore=umore;
 	}
 
-	/**Restituisce l'umore dell'utente in formato Striga */
+	/**Restituisce l'umore dell'utente in formato Striga.*/
 	public String toString(){
 		return this.umore;
 	}

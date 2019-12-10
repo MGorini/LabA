@@ -6,6 +6,8 @@ import java.io.FileWriter;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 
+/**
+Classe principale per la gestione dell'applicazione: Emotional Maps*/
 class EmotionalMaps{
 	LinkedList<POI> l_POI;
 	TreeMap<String, LinkedList<Dati>> collezione;
@@ -13,14 +15,15 @@ class EmotionalMaps{
 	final String IMPORT = "import";
 	final String CREATE_MAP = "create_map";
 
-	/**Permette di scrivere sul file di testo eventuali errore, il file di testo usato è un log creato da noi*/
+	/**Permette di scrivere sul file di testo eventuali errore, il file di testo usato è un log creato da noi.*/
 	public static void scriviSuLog(Exception e){
 		try {
 			new BufferedWriter(new FileWriter(FILE_LOG, true)).write(e.getMessage());
 		}catch (Exception e){}
 	}
 
-	/** suddivido l'import dall'export*/
+	/** suddivide l'import dall'export ed esegue le operazioni richieste.<br>
+	In caso di istruzione non riconosciuta ignora l'istruzione.*/
 	public static void distinguiImportExport(String file) {
 		// creo il collegamento col file
 		BufferedReader br = new BufferedReader(new FileReader(file));
@@ -55,7 +58,7 @@ class EmotionalMaps{
 		}
 	}
 
-	/**Funzione che mi inserisce i valori dell'import (dati.txt) all'interno della treeMap*/
+	/**Funzione che mi inserisce i valori dell'import (dati.txt) all'interno della mappa dei valori.*/
 	public static void importFF(String file){
 		try {
 			// creo il collegamento col file
@@ -96,6 +99,7 @@ class EmotionalMaps{
 		}
 	}
 
+	/**Genera le mappe emozionali richieste dal progetto.*/
 	public static String createMap(Date start, Date end) throws Exception{
 		if(start.compareTo(end) > 0)
 			throw new Exception("Intervallo temporale non corretto");
@@ -103,11 +107,13 @@ class EmotionalMaps{
 		CreateCompleteMap(start, end);
 	}
 
-	/**Stampa, sullo standard output, la "mappa emozionale richiesta"*/
+	/**Stampa, sullo standard output, la "mappa emozionale richiesta".<br>
+	La funzione viene richiamata ed andra' riscritta in caso di un implementazione a livello di applicazione mobile.*/
 	private static void stampaAVideo(String s){
 		System.out.println(s);
 	}
 
+	/**Genera la mappa emozionale di tutti gli utenti.*/
 	private static String CreateCompleteMap(date start, date end){
 		//-----------------------HashMap<POI, array di double>
 		NavigableSet<String> ns = collezione.navigableKeySet();
@@ -123,6 +129,12 @@ class EmotionalMaps{
 		}
 	}
 
+	/**Genera la mappa emozionale dei soli utenti attivi.*/
+	private static String CreateCompleteMap(date start, date end){
+
+	}
+
+	/**Calcola il POI piu' vicino al caricamento dell'utente.*/
 	private static int getNearestPoi(Coordinate c){
 		int position = 1;
 		double distance_position, distance_next;

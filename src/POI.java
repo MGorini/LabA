@@ -2,12 +2,13 @@ import java.util.LinkedList;
 import java.io.BufferedReader;
 import java.io.FileReader;
 
+/**Oggeto che descrive un POI (Point Of Interest = Punto di interesse).*/
 class POI{
 	public Coordinate coord;
 	String nome;
 
 	/**Crea un oggetto di tipo POI richiedendo il nome e la sua locazione
-	espressa per mezzo delle Coordinate*/
+	espressa per mezzo delle Coordinate.*/
 	public POI(String _nome, Coordinate _coord) throws POIException{
 		coord=_coord;
 		setNome(_nome);
@@ -15,8 +16,8 @@ class POI{
 
 	/**Crea un oggetto di tipo POI richiedendo il nome e la sua locazione
 	espressa per mezzo delle Coordinate, tramite una stringa
-	strutturata secondo i criteri prestabiliti:
-	coordinate-nome*/
+	strutturata secondo i criteri prestabiliti:<br>
+	coordinate-nome.*/
 	public POI(String _info) throws Exception{
 		// Divido le informazioni
 		String[] i=_info.split("-");
@@ -29,18 +30,18 @@ class POI{
 		setNome(i[1]);
 	}
 
-	/**Setta il nome relativo al POI*/
+	/**Setta il nome relativo al POI.*/
 	public void setNome(String _nome) throws POIException{
 		if(_nome==null) throw new POIException("Nome del POI non puo' essere null");
 		nome=_nome;
 	}
-	/**Restituisce il nome del POI*/
+
+	/**Restituisce il nome del POI.*/
 	public String getNome(){
 		return nome;
 	}
 
-
-	/**Consente di Caricare i POI da File, restituendo una Lista di POI*/
+	/**Consente di Caricare i POI da File, restituendo una Lista di POI.*/
 	public static LinkedList<POI> caricaPOI(String _file){
 		// Creo la lista dei POI
 		LinkedList<POI> l=new LinkedList<POI>();
@@ -69,7 +70,7 @@ class POI{
 	}
 
 
-	/**Restituisce le informazioni del POI in fomato stringa*/
+	/**Restituisce le informazioni del POI in fomato stringa.*/
 	public String toString(){
 		return coord.toString()+"-"+getNome();
 	}

@@ -1,6 +1,8 @@
 import java.util.Date;
 import java.util.Calendar;
 
+/**
+Oggetto che descrive un caricamento degli utenti.*/
 class Dati{
 	// ATTRIBUTI
 	private boolean inout;
@@ -9,7 +11,7 @@ class Dati{
 	public Coordinate c;
 	public Umore u;
 
-	/**Crea un oggetto di tipo Dati*/
+	/**Crea un oggetto di tipo Dati.*/
 		public Dati(String inout, String loginlogout, String data, Umore u, Coordinate c) throws DatiException{
 		this.c=c;
 		this.u=u;
@@ -21,8 +23,8 @@ class Dati{
 	}
 
 	/**
-	Consente di settare lo stato di registrazione
-	Solleva un eccezzione se il dato non è valido 
+	Consente di settare lo stato di registrazione.<br>
+	Solleva un eccezzione se il dato non è valido.
 	*/
 	public void setINOUT(String inout) throws DatiException{
 		if(inout=="IN")
@@ -37,15 +39,15 @@ class Dati{
 	}
 
 	/**
-	Restituisce lo stato di registrazione
+	Restituisce lo stato di registrazione.
 	*/
 	public boolean getINOUT(){
 		return inout;
 	}
 
 	/**
-	Consente di settare lo stato di LOG
-	Solleva un eccezzione se il dato non è valido 
+	Consente di settare lo stato di LOG.<br>
+	Solleva un eccezzione se il dato non è valido. 
 	*/
 	public void setLOGINLOGOUT(String loginlogout) throws DatiException{
 		if(loginlogout=="LOGIN")
@@ -60,13 +62,13 @@ class Dati{
 	}
 
 	/**
-	Restituisce lo stato di LOG
+	Restituisce lo stato di LOG.
 	*/
 	public boolean getLOGINLOGOUT(){
 		return loginlogout;
 	}
 
-	/**Verifica che la data sia valida*/
+	/**Verifica che la data sia valida.*/
 	public static boolean verificaData(int year, int mounth, int day){
 		// Creo il calendario
 		GregorianCalendar c=new GregorianCalendar(year, mounth-1, day);
@@ -83,7 +85,8 @@ class Dati{
 		{ return false; }
 	}
 
-	/**suddivide le info da stringa a data vera e propria: giorno/mese/anno */
+	/**suddivide le info da stringa a data vera e propria:
+	<br>giorno/mese/anno. */
 	public static Date predisponiData(String s) throws DatiException{
 		int d,m,y;
 		if(s.length()!=8)
@@ -102,22 +105,22 @@ class Dati{
 	}
 
 	/**
-	Setta la data dell'informazione
-	Solleva un eccezzione se il dato non è valido
+	Setta la data dell'informazione.<br>
+	Solleva un eccezzione se il dato non è valido.
 	*/
 	public void setData(String data) throws DatiException{
 		this.data=predisponiData(data);
 	}
 
 	/**
-	Restituisce il valore della data
+	Restituisce il valore della data.
 	*/
 	public Date getData(){
 		return data;
 	}
 
 	/**
-	Restituisce il dato in formato Stringa
+	Restituisce il dato in formato Stringa.
 	*/
 	public String toString(){
 		StringBuilder sb=new StringBuilder();
