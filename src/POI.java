@@ -3,7 +3,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 
 /**Oggeto che descrive un POI (Point Of Interest = Punto di interesse).*/
-class POI{
+public class POI{
 	public Coordinate coord;
 	String nome;
 

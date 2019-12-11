@@ -1,9 +1,10 @@
 import java.util.Date;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 /**
 Oggetto che descrive un caricamento degli utenti.*/
-class Dati{
+public class Dati{
 	// ATTRIBUTI
 	private boolean inout;
 	private boolean loginlogout;
@@ -71,7 +72,7 @@ class Dati{
 	/**Verifica che la data sia valida.*/
 	public static boolean verificaData(int year, int mounth, int day){
 		// Creo il calendario
-		GregorianCalendar c=new GregorianCalendar(year, mounth-1, day);
+		GregorianCalendar cal=new GregorianCalendar(year, mounth-1, day);
 		// setto la data del calendario
 		cal.setLenient(false);
 		try{

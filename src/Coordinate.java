@@ -1,6 +1,6 @@
 /**
 Oggetto che descrive una locazione all'interno della mappa emozionale.*/
-class Coordinate{
+public class Coordinate{
 	private double longitudine;
 	private double latitudine;
 
