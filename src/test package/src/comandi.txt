@@ -1,0 +1,2 @@
+javac soluzione/Main.java 
+javadoc -package soluzione

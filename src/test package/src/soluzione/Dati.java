@@ -1,4 +1,4 @@
-package emotionalmaps;
+package soluzione;
 
 import java.util.Date;
 import java.util.Calendar;

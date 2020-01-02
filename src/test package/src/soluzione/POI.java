@@ -1,4 +1,4 @@
-package emotionalmaps;
+package soluzione;
 
 import java.util.LinkedList;
 import java.io.BufferedReader;

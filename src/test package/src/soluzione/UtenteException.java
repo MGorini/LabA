@@ -1,4 +1,4 @@
-package emotionalmaps;
+package soluzione;
 
 /**Descrive un eccezione a livello di utente.*/
 public class UtenteException extends Exception{
