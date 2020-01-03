@@ -1,3 +1,5 @@
+package soluzione;
+
 import java.util.LinkedList;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -39,6 +41,11 @@ public class POI{
 	/**Restituisce il nome del POI.*/
 	public String getNome(){
 		return nome;
+	}
+
+	/**Restituisce le coordinate relative al POI*/
+	public Coordinate getCoordinate() {
+		return coord;
 	}
 
 	/**Consente di Caricare i POI da File, restituendo una Lista di POI.*/

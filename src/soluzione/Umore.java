@@ -1,3 +1,5 @@
+package soluzione;
+
 /*
 Oggeto che descrive le tipologie di Umore.
 */
@@ -9,7 +11,6 @@ public enum Umore {
 	N ("NEUTRO");
 
 	private String umore;
-	public final int UMORI_TOTALI = 5;
 
 	private Umore(String umore){
 		this.umore=umore;

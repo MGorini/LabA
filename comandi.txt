@@ -1,0 +1,2 @@
+per compilare: javac soluzione/EmotionalMaps.java
+per eseguire: java soluzione.EmotionalMaps 123

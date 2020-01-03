@@ -1,6 +1,5 @@
 package soluzione;
 
-
 /**
 Oggetto che descrive una locazione all'interno della mappa emozionale.*/
 public class Coordinate{

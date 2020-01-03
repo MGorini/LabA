@@ -122,6 +122,16 @@ public class Dati{
 		return data;
 	}
 
+	/**Restituisce il valore relativo alle coordinate*/
+	public Coordinate getCoordinate() {
+		return c;
+	}
+
+	/**Restituisce il valore relativo all'umore*/
+	public Umore getUmore() {
+		return u;
+	}
+
 	/**
 	Restituisce il dato in formato Stringa.
 	*/
