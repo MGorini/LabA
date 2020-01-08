@@ -1,3 +1,10 @@
+/*
+*	LONGOBARDI DANIELE
+*
+* 	GORINI MARCO
+*
+*/
+
 package soluzione;
 
 import java.util.LinkedList;
@@ -46,7 +53,6 @@ class EmotionalMaps{
 			BufferedReader br = new BufferedReader(new FileReader(file));
 
 			// creo le variabili di supporto
-			String[] tmp;
 			String[] tmpDate;
 			String riga;
 			Date start, end;
@@ -55,7 +61,7 @@ class EmotionalMaps{
 			while ((riga = br.readLine()) != null) {
 				try {
 					//distingui il comando (import, createMap) dai dati veri e propri
-					tmp = riga.split("(");
+					String[] tmp = riga.split("\\(");
 					if (tmp.length == 2) {
 						if (tmp[0] == IMPORT)//capisce se è import ed eseguo il comando
 							importFF(tmp[0].substring(0, tmp[0].length() - 1));
