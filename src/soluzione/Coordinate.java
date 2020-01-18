@@ -19,7 +19,7 @@ public class Coordinate{
 	latitudine,longitudine.*/
 	public Coordinate(String _coordinate) throws CoordinateException{
 		// Separo le due coordinate
-		String[] i=_coordinate.split(",");
+		String[] i=_coordinate.split("\\,");
 
 		// verifico che effettivamente siano due
 		if(i.length!=2)	throw new CoordinateException("Formato Coordinate non valido: \"latitudine,longitudine\"");

@@ -30,11 +30,11 @@ public class Dati{
 	Solleva un eccezzione se il dato non è valido.
 	*/
 	public void setINOUT(String inout) throws DatiException{
-		if(inout=="IN")
+		if(inout.compareTo("IN") == 0)
 			this.inout=true;
 		else
 		{
-			if(inout=="OUT")
+			if(inout.compareTo("OUT") == 0)
 				this.inout=false;
 			else
 				throw new DatiException("Dati di IN/OUT non validi");
@@ -53,11 +53,11 @@ public class Dati{
 	Solleva un eccezzione se il dato non è valido. 
 	*/
 	public void setLOGINLOGOUT(String loginlogout) throws DatiException{
-		if(loginlogout=="LOGIN")
+		if(loginlogout.compareTo("LOGIN") == 0)
 			this.loginlogout=true;
 		else
 		{
-			if(loginlogout=="LOGOUT")
+			if(loginlogout.compareTo("LOGOUT") == 0)
 				this.loginlogout=false;
 			else
 				throw new DatiException("Dati di LOGIN/LOGOUT non validi");

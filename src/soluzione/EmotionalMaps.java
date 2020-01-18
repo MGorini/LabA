@@ -256,11 +256,11 @@ class EmotionalMaps{
 
 	/**Restituisce l'index del POI piu' vicino*/
 	private static int getNearestPoi(Coordinate c){
-		int position = 1;
+		int position = 0;
 		double distance_position, distance_next;
 		Coordinate cpoi_position, cpoi_next;
 
-		for(int i=2; i<l_POI.size();i++){
+		for(int i=1; i<l_POI.size();i++){
 			// assegno le coordinate dei POI
 			cpoi_position = l_POI.get(position).coord;
 			cpoi_next = l_POI.get(i).coord;
