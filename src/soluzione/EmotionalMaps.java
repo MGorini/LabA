@@ -63,12 +63,12 @@ class EmotionalMaps{
 					//distingui il comando (import, createMap) dai dati veri e propri
 					String[] tmp = riga.split("\\(");
 					if (tmp.length == 2) {
-						if (tmp[0] == IMPORT)//capisce se è import ed eseguo il comando
-							importFF(tmp[0].substring(0, tmp[0].length() - 1));
-						else if (tmp[0] == CREATE_MAP) {//verifico se è create map ed eseguo il comando
-
+						if (tmp[0].compareTo(IMPORT)==0){//capisce se è import ed eseguo il comando
+							importFF(tmp[1].substring(0, tmp[1].length() - 1));
+						}
+						else if (tmp[0].compareTo(CREATE_MAP)==0) {//verifico se è create map ed eseguo il comando
 							//creo le date dalle stringhe prima di procedere
-							tmpDate = tmp[1].split("-");
+							tmpDate = tmp[1].split("\\-");
 							start = Dati.predisponiData(tmpDate[0]);
 							end = Dati.predisponiData(tmpDate[1].substring(0, tmpDate[1].length() - 1));
 
@@ -128,9 +128,14 @@ class EmotionalMaps{
 
 	/**Genera le due mappe emozionali richieste*/
 	public static void createMap(Date start, Date end) throws Exception{
+
 		if(start.compareTo(end) > 0)
 			throw new Exception("Intervallo temporale non corretto");
+
+		stampaAVideo("Mappa Emozionale utenti attivi");
 		CreateActiveUsersMap(start, end);
+
+		stampaAVideo("Mappa Emozionale di tutti gli utenti");
 		CreateCompleteMap(start, end);
 	}
 
@@ -142,7 +147,8 @@ class EmotionalMaps{
 	/**Conteggia lo stato emozionale*/
 	private static void Conteggia(Dati d, HashMap<POI, int[]> calcolo){
 		// ottengo i valori relativi al POI piu' vicino
-		int[] tmp = calcolo.get(getNearestPoi(d.getCoordinate()));
+		int[] tmp = calcolo.get(l_POI.get(getNearestPoi(d.getCoordinate())));
+
 		// conteggio l'umore
 		switch (d.getUmore()) {
 			case A:
@@ -219,8 +225,9 @@ class EmotionalMaps{
 			for(Dati d : tmp){
 				//verifico che la data sia compresa e la conteggio
 				if(d.getData().compareTo(start) >= 0 && d.getData().compareTo(end) <= 0) {
-					if(d.getLOGINLOGOUT() && d.getINOUT())
+					if(d.getLOGINLOGOUT() && d.getINOUT()){
 						Conteggia(d, calcolo);
+					}
 				}
 			}
 		}
@@ -232,18 +239,19 @@ class EmotionalMaps{
 	private static void createMapString(HashMap<POI, int[]> calcolo){
 
 		StringBuilder sb;
-		for(int i=1; i<= l_POI.size(); i++)
+		for(POI p: l_POI)
 		{
 			sb = new StringBuilder();
-			int[] tmp = calcolo.get(l_POI.get(i));
+			int[] tmp = calcolo.get(p);
 
 			// ottengo il totale delle emozioni
 			int totale = 0;
 			for(int j=0; j< tmp.length; j++)
 				totale += tmp[j];
+			if(totale==0) totale = 1;
 
 			// genero la stringa con le percentuali
-			sb.append("POI"+i+" ");
+			sb.append(p+" ");
 			sb.append((tmp[0]/totale)*100+" A,");
 			sb.append((tmp[1]/totale)*100+" F,");
 			sb.append((tmp[2]/totale)*100+" S,");
@@ -278,12 +286,16 @@ class EmotionalMaps{
 	public static void main(String[] args){
 		//inzializzo la treeMap
 		collezione = new TreeMap<String, LinkedList<Dati>>();
+			//System.out.println("mappa creata");
 
 		// inizializzo il file di log
 		initFile();
+			//System.out.println("File inizializzato");
 
 		// carico i POI in una lista
 		l_POI=POI.caricaPOI("POI.txt");
+			//System.out.println("POI caricati");
+
 		distinguiImportExport(args[0]);
 	}
 }
