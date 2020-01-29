@@ -284,6 +284,15 @@ class EmotionalMaps{
 	}
 
 	public static void main(String[] args){
+		// verifico che vi sia il file in input
+		if(args.length == 0){
+			// segnalo il problema
+			scriviSuLog(throw new Exception("Impossibile eseguire il programma in assenza del file contenente le isrtuzioni"));
+			// esco dal programma
+			return ;
+		}
+
+
 		//inzializzo la treeMap
 		collezione = new TreeMap<String, LinkedList<Dati>>();
 			//System.out.println("mappa creata");
