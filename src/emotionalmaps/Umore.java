@@ -1,4 +1,4 @@
-package soluzione;
+package emotionalmaps;
 
 /*
 Oggeto che descrive le tipologie di Umore.

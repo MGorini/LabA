@@ -5,7 +5,7 @@
 *
 */
 
-package soluzione;
+package emotionalmaps;
 
 import java.util.LinkedList;
 import java.util.TreeMap;
@@ -283,28 +283,25 @@ class EmotionalMaps{
 		return position;
 	}
 
-	public static void main(String[] args){
+	public static void main(String[] args) throws Exception{
 		// verifico che vi sia il file in input
 		if(args.length == 0){
 			// segnalo il problema
-			scriviSuLog(throw new Exception("Impossibile eseguire il programma in assenza del file contenente le isrtuzioni"));
+			scriviSuLog(new Exception("Impossibile eseguire il programma in assenza del file contenente le istruzioni"));
 			// esco dal programma
 			return ;
 		}
-
-
+	
 		//inzializzo la treeMap
 		collezione = new TreeMap<String, LinkedList<Dati>>();
-			//System.out.println("mappa creata");
 
 		// inizializzo il file di log
 		initFile();
-			//System.out.println("File inizializzato");
 
 		// carico i POI in una lista
 		l_POI=POI.caricaPOI("POI.txt");
-			//System.out.println("POI caricati");
 
 		distinguiImportExport(args[0]);
 	}
+
 }
