@@ -243,9 +243,10 @@ class EmotionalMaps{
 		{
 			sb = new StringBuilder();
 			int[] tmp = calcolo.get(p);
+				//System.out.println(tmp[0]);
 
 			// ottengo il totale delle emozioni
-			int totale = 0;
+			double totale = 0;
 			for(int j=0; j< tmp.length; j++)
 				totale += tmp[j];
 			if(totale==0) totale = 1;
@@ -268,7 +269,7 @@ class EmotionalMaps{
 		double distance_position, distance_next;
 		Coordinate cpoi_position, cpoi_next;
 
-		for(int i=1; i<l_POI.size();i++){
+		for(int i=0; i<l_POI.size();i++){
 			// assegno le coordinate dei POI
 			cpoi_position = l_POI.get(position).coord;
 			cpoi_next = l_POI.get(i).coord;
