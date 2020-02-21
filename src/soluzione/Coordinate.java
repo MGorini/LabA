@@ -1,4 +1,4 @@
-package emotionalmaps;
+package soluzione;
 
 /**
 Oggetto che descrive una locazione all'interno della mappa emozionale.*/

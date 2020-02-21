@@ -1,4 +1,4 @@
-package emotionalmaps;
+package soluzione;
 
 /**Descrive un eccezione a livello di dati caricati dagli utenti.*/
 public class DatiException extends Exception{

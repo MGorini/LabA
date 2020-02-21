@@ -5,7 +5,7 @@
 *
 */
 
-package emotionalmaps;
+package soluzione;
 
 import java.util.LinkedList;
 import java.util.TreeMap;
@@ -184,6 +184,7 @@ class EmotionalMaps{
 
 			calcolo.put(p, count);
 		}
+		
 		return calcolo;
 	}
 
